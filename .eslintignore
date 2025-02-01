@@ -1,0 +1,11 @@
+node_modules/
+dist/
+build/
+public/
+coverage/
+.env
+*.config.js
+*.min.js
+*.log
+.vscode/
+
