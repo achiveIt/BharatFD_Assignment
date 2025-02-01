@@ -9,7 +9,9 @@ app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
 
 import AdminRouter from "../src/routes/admin.route.js"
+import UserRouter from "../src/routes/user.route.js"
 
-app.use('/api/v1/Admin',AdminRouter)
+app.use('/api/v1/Admin', AdminRouter)
+app.use('/api/v1/User', UserRouter)
 
 export {app}
