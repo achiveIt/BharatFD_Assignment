@@ -61,7 +61,66 @@ const deleteFAQ = asyncHandler(async (req, res) => {
     }
 });
 
+const editFAQ = asyncHandler(async (req, res) => {
+    const { id } = req.params;
+    const { question, answer } = req.body;
+
+    if (!id) {
+        return res
+                .status(400)
+                .json(
+                    new ApiResponse(400, {}, "FAQ id is required to edit")
+                );
+    }
+
+    if (!question && !answer) {
+        return res
+                .status(400)
+                .json(
+                    new ApiResponse(400, {}, "Either question or answer are required to update")
+                );
+    }
+
+    try {
+        const faq = await Faq.findById(id);
+
+        if (!faq) {
+            return res
+                    .status(404)
+                    .json(
+                        new ApiResponse(404, {}, "FAQ not found")
+                    );
+        }
+
+        if (!answer) {
+            faq.question = question;
+        } else if (!question) {
+            faq.answer = answer;
+        } else {
+            faq.question = question;
+            faq.answer = answer;
+        }
+       
+        await faq.save();
+
+        return res
+                .status(200)
+                .json(
+                    new ApiResponse(200, { faq }, "FAQ updated successfully")
+                );
+
+    } catch (error) {
+        return res
+                .status(500)
+                .json(
+                    new ApiResponse(500, {}, "Error updating FAQ", error.message)
+                );
+    }
+});
+
+
 export{
     addFAQ,
-    deleteFAQ
+    deleteFAQ,
+    editFAQ
 } 
