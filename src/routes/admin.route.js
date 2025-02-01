@@ -1,8 +1,10 @@
 import { Router } from "express";
-import { addFAQ } from "../controller/admin.controller.js";
+import { addFAQ, deleteFAQ } from "../controller/admin.controller.js";
 
 const router = Router();
 
-router.route('/addFaq').post(addFAQ);
+router.route('/faq').post(addFAQ);
+
+router.route('/faq/:id').delete(deleteFAQ);
 
 export default router
