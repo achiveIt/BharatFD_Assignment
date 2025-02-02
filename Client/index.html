@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ Management Portal</title>
+    <script src="https://cdn.tiny.cloud/1/42c6hb03d1dghhp4dgpg84137yf8rdjgswgpkehr35llzh84/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>FAQ Management Portal</h1>
+        <input type="text" id="questionInput" placeholder="Enter your question">
+        <textarea id="answerInput"></textarea>
+        <button id="addButton" onclick="addFAQ()">Add FAQ</button> >
+        <button onclick="showAllFAQs()">Show All FAQs</button>
+        <div id="languageSelectContainer" class="hidden">
+            <select id="languageSelect" onchange="changeLanguage()">
+                <option value="en">English</option>
+                <option value="hi">Hindi</option>
+                <option value="bn">Bengali</option>
+            </select>
+        </div>
+        <div id="faqList"></div>
+    </div>
+    <script src="script.js"></script>
+    
+</body>
+</html>

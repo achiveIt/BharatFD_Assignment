@@ -1,6 +1,16 @@
 import { Faq } from '../model/faq.model.js';
 import asyncHandler from '../utils/asyncHandler.js';
 import ApiResponse from '../utils/apiResponse.js';
+import { redisCache } from './user.controller.js';
+
+const clearCache = async () => {
+    try {
+        await redisCache.flushAll(); 
+        console.log('Redis cache cleared');
+    } catch (err) {
+        console.error('Error clearing Redis cache:', err);
+    }
+};
 
 const addFAQ = asyncHandler(async (req, res) => {
     const { question, answer } = req.body;
@@ -18,6 +28,7 @@ const addFAQ = asyncHandler(async (req, res) => {
         });
 
         await newFAQ.save();
+        await clearCache();
 
         return res.status(201).json(
             new ApiResponse(201, { faq: newFAQ }, "FAQ added successfully")
@@ -45,6 +56,7 @@ const deleteFAQ = asyncHandler(async (req, res) => {
         await Faq.deleteOne({
             _id : id
         })
+        await clearCache();
 
         return res
                 .status(200)
@@ -102,6 +114,7 @@ const editFAQ = asyncHandler(async (req, res) => {
         }
        
         await faq.save();
+        await clearCache();
 
         return res
                 .status(200)
