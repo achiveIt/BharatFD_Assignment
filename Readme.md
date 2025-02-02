@@ -22,25 +22,25 @@ WYSIWYG Editor Integrated using tiny.cloud service for answer field
 
 ### 1. Clone the Repository
 Clone the project from GitHub:
-bash
+```bash
 git clone https://github.com/achiveIt/BharatFD_Assignment.git
 cd BharatFD_Assignment
-
+```
 
 ### 2. Install Backend Dependencies
 Navigate to the backend folder and install dependencies:
-bash
+```bash
 cd server
 npm install
-
+```
 
 ### 3. Set Up Environment Variables
 Make sure you set up the necessary environment variables:
-bash
+```bash
 MONGODB_URL = "your-mongodb-url"
 PORT = 8000
 REDIS_URL = "redis-url"
-
+```
 
 ### 4. Deployment 
 The frontend is hosted on AWS t2.micro
@@ -68,7 +68,7 @@ To test the API, you can use the following domain:
 - *Admin API Endpoint*: http://13.203.76.90:8000/api/v1/Admin/faq (NOTE:- currently admin only has methods POST, DELETE and PATCH)
 
 Example API Usage:
-bash
+```bash
 # Create a new FAQ
 curl -X POST http://13.203.76.90:8000/api/v1/Admin/faq -H "Content-Type: application/json" -d '{"question": "Question", "answer": "Answer"}'
 
@@ -86,7 +86,7 @@ curl http://13.203.76.90:8000/api/v1/User/faq?lang=hi
 
 # Fetch FAQs in Bengali
 curl http://13.203.76.90:8000/api/v1/User/faq?lang=bn
-
+```
 
 ---
 
