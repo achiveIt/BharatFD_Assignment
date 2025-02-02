@@ -1,8 +1,8 @@
 import {Router} from 'express';
-import getAllFAQs from '../controller/user.controller.js';
+import {getFAQs} from '../controller/user.controller.js';
 
 const router = Router();
 
-router.route('/faq').get(getAllFAQs);
+router.route('/faq/:lang').get(getFAQs);
 
 export default router;
