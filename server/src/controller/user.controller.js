@@ -87,4 +87,4 @@ const getFAQs = asyncHandler(async (req, res) => {
     }
 });
 
-export { getFAQs };
+export { getFAQs, redisCache };
