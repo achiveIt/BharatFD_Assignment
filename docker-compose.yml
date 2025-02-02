@@ -1,0 +1,40 @@
+version: '3.7'
+
+services:
+  frontend:
+    image: shivdutt07/bharatfdfrontend:v1  # Replace with your actual image name
+    container_name: vanilla-frontend
+    ports:
+      - "80:80"  # Expose port 80 for the frontend
+    networks:
+      - app-network
+    restart: always
+
+  backend:
+    image: shivdutt07/bharatfdbackend:v2  # Replace with your actual image name
+    container_name: backend
+    environment:
+      - MONGODB_URL = mongodb+srv://shivdutt:shivdutt123@cluster1.d5kt8.mongodb.net
+      - PORT = 8000
+      - TRANSLATE_API = qBXXgbVMv8R66EJG1EFKxh8XAmmweME8
+      - REDIS_URL = redis://redis:6379
+    ports:
+      - "8000:8000"  # Expose port 5000 for the backend
+    depends_on:
+      - redis
+    networks:
+      - app-network
+    restart: always
+
+  redis:
+    image: redis:latest  # Use the official Redis image from Docker Hub
+    container_name: redis
+    ports:
+      - "6379:6379"  # Expose Redis port
+    networks:
+      - app-network
+    restart: always
+
+networks:
+  app-network:
+    driver: bridge

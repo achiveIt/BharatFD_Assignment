@@ -1,3 +1,4 @@
+const BACKEND_URL = "http://13.203.76.90:8000"
 tinymce.init({
     selector: '#answerInput',
     height: 300,
@@ -22,7 +23,7 @@ function addFAQ() {
     const answer = tinymce.get('answerInput').getContent();
 
     if (question && answer) {
-        fetch("http://localhost:8000/api/v1/Admin/faq", {
+        fetch(`${BACKEND_URL}/api/v1/Admin/faq`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -44,7 +45,7 @@ function addFAQ() {
 }
 
 function displayFAQs() {
-    fetch(`http://localhost:8000/api/v1/User/faq?lang=${currentLanguage}`) 
+    fetch(`${BACKEND_URL}/api/v1/User/faq?lang=${currentLanguage}`) 
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
@@ -102,7 +103,7 @@ function editFAQ(editingIndex) {
         return;
     }
 
-    fetch(`http://localhost:8000/api/v1/Admin/faq/${editingIndex}`, {
+    fetch(`${BACKEND_URL}/api/v1/Admin/faq/${editingIndex}`, {
         method: "PATCH",
         headers: {
             "Content-Type": "application/json"
@@ -123,7 +124,7 @@ function editFAQ(editingIndex) {
 
 function deleteFAQ(faqId) {
     if (confirm('Are you sure you want to delete this FAQ?')) {
-        fetch(`http://localhost:8000/api/v1/Admin/faq/${faqId}`, {
+        fetch(`${BACKEND_URL}/api/v1/Admin/faq/${faqId}`, {
             method: "DELETE",
         })
         .then(response => response.json())
