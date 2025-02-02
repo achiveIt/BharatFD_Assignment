@@ -3,6 +3,6 @@ import {getFAQs} from '../controller/user.controller.js';
 
 const router = Router();
 
-router.route('/faq/:lang').get(getFAQs);
+router.route('/faq').get(getFAQs);
 
 export default router;
